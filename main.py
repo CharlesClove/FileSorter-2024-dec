@@ -12,22 +12,22 @@ def Choose_path_to_dir_windows():
     root.destroy() #niszczy okno po wyborze
     return path
 
-def zczytywanie_Plikow_classic(path):
+def Read_files_classic(path):
     if os.path.isdir(path):
         Stored_files = defaultdict(list)
 
-        for plik in os.listdir(path):
-            path_z_plikiem = os.path.join(path, plik)
+        for file in os.listdir(path):
+            file_path = os.path.join(path, file)
 
-            if os.path.isfile(path_z_plikiem):
-                typ_pliku = os.path.splitext(plik)[1].lower()
-                Stored_files[typ_pliku].append(plik)
+            if os.path.isfile(file_path):
+                file_type = os.path.splitext(file)[1].lower()
+                Stored_files[file_type].append(file)
 
         return Stored_files
     else:
         print("Ten path nie istnieje")
 
-def zczytywanie_Plikow_pathlib(path):
+def Read_files_pathlib(path):
     folder_to_scan = Path(path)
     if not folder_to_scan.is_dir():
         print("Unknown Path")
@@ -90,7 +90,7 @@ path = Choose_path_to_dir_windows()
 if path:
     
     #Files = zczytywanie_Plikow_classic(path)
-    Files_Pathlib = zczytywanie_Plikow_pathlib(path)
+    Files_Pathlib = Read_files_pathlib(path)
     '''
     if Files:
         """for typ, lista in Files.items():
